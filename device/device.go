@@ -34,11 +34,7 @@ func GetDeviceInfo() (deviceInfo *DeviceInfo, err error) {
 		return
 	}
 
-	memory, err := memory.GetMem()
-	if err != nil {
-		return
-	}
-
+	memoryInfo, err := memory.GetMem()
 	if err != nil {
 		return
 	}
@@ -51,12 +47,13 @@ func GetDeviceInfo() (deviceInfo *DeviceInfo, err error) {
 		CPU:       cpuInfo,
 		DiskList:  diskList,
 		HostInfo:  hostInfo,
-		Memory:    memory,
+		Memory:    memoryInfo,
 		IpAddress: ipAddress,
 	}
 
 	deviceInfo.DeviceInfoList = append(deviceInfo.DeviceInfoList, deviceInfo.CPU.GetMapCpu(),
-		deviceInfo.DiskList.GetMapDisk(), deviceInfo.HostInfo.GetMapHostInfo(), deviceInfo.Memory.GetMapMemory(), util.GetTimeMap())
+		deviceInfo.DiskList.GetMapDisk(), deviceInfo.HostInfo.GetMapHostInfo(), deviceInfo.Memory.GetMapMemory(),
+		util.GetTimeMap())
 	return
 }
 
